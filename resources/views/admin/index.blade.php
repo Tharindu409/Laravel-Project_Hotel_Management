@@ -13,28 +13,7 @@
 <div class="flex h-screen">
 
   <!-- Sidebar -->
-  <aside class="w-64 bg-slate-900 text-white flex flex-col">
-    <div class="p-6 text-2xl font-bold border-b border-slate-700">
-      Hotel Admin
-    </div>
-
-    <nav class="flex-1 p-4 space-y-2 text-sm">
-      <a href="#" class="block py-2 px-3 rounded bg-slate-800">📊 Dashboard</a>
-      <a href="#" class="block py-2 px-3 rounded hover:bg-slate-800">🛏️ Rooms</a>
-      <a href="#" class="block py-2 px-3 rounded hover:bg-slate-800">📅 Bookings</a>
-      <a href="#" class="block py-2 px-3 rounded hover:bg-slate-800">👤 Customers</a>
-      <a href="#" class="block py-2 px-3 rounded hover:bg-slate-800">💳 Payments</a>
-      <a href="#" class="block py-2 px-3 rounded hover:bg-slate-800">👨‍💼 Staff</a>
-      <a href="#" class="block py-2 px-3 rounded hover:bg-slate-800">🧹 Maintenance</a>
-      <a href="#" class="block py-2 px-3 rounded hover:bg-slate-800">📈 Reports</a>
-      <a href="#" class="block py-2 px-3 rounded hover:bg-slate-800">⚙️ Settings</a>
-    </nav>
-
-    <div class="p-4 border-t border-slate-700 text-sm">
-      <p class="text-gray-400">Logged in as</p>
-      <p class="font-semibold">{{ Auth::user()->name }}</p>
-    </div>
-  </aside>
+ @include('admin.sidebar')
 
   <!-- Main Content -->
   <div class="flex-1 flex flex-col">
