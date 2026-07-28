@@ -11,12 +11,15 @@
         <li>
           <a href="#" class="block py-2 px-3 rounded hover:bg-slate-800 font-medium">🛏️ Rooms</a>
           <ul class="pl-8 mt-1 space-y-1">
+          <!-- can scroll the options-->
             <li>
-              <a href="{{url('create_room')}}" class="block py-1.5 px-3 rounded text-slate-400 hover:text-white hover:bg-slate-800 text-xs">➕ Add Room</a>
+              <a href="{{url('create_room')}}" class="block py-1.5 px-3 rounded text-slate-400 hover:text-white hover:bg-slate-800 text-xs"> Add Room</a>
             </li>
+
             <li>
-              <a href="#" class="block py-1.5 px-3 rounded text-slate-400 hover:text-white hover:bg-slate-800 text-xs">👀 View Rooms</a>
+              <a href="{{url('view_room')}}" class="block py-1.5 px-3 rounded text-slate-400 hover:text-white hover:bg-slate-800 text-xs"> View Rooms</a>
             </li>
+            
           </ul>
         </li>
 

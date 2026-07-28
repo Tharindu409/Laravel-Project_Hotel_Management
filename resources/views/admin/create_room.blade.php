@@ -34,76 +34,138 @@
           <p class="text-slate-500 mt-2">Fill in the details below to add a new room to your property.</p>
         </div>
 
-        <!-- Form Card -->
-        <div class="bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-8">
-          <form action="{{ url('store_room') }}" method="post" enctype="multipart/form-data" class="space-y-6">
-            @csrf
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <!-- Room Type -->
-              <div class="space-y-2">
-                <label for="room_type" class="block text-sm font-semibold text-slate-700">Room Type</label>
-                <select name="room_type" id="room_type" class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all outline-none">
-                    <option value="" disabled selected>Select Room Type</option>
-                    <option value="Single">Single</option>
-                    <option value="Double">Double</option>
-                    <option value="Deluxe">Deluxe</option>
-                    <option value="Suite">Suite</option>
-                </select>
-              </div>
+        <!-- Success Message Alert -->
+        @if(session()->has('message'))
+          <div class="mb-6 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 font-medium flex justify-between items-center">
+            <span>{{ session()->get('message') }}</span>
+            <button onclick="this.parentElement.remove()" class="text-emerald-500 hover:text-emerald-800 font-bold">&times;</button>
+          </div>
+        @endif
 
-              <!-- Capacity -->
-              <div class="space-y-2">
-                <label for="capacity" class="block text-sm font-semibold text-slate-700">Capacity (Persons)</label>
-                <input type="number" min="1" name="capacity" id="capacity" placeholder="e.g. 2" class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all outline-none">
-              </div>
+       <!-- Form Card -->
+<div class="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+  <!-- Display Errors -->
+@if ($errors->any())
+    <div style="background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
-              <!-- Price -->
-              <div class="space-y-2">
-                <label for="price" class="block text-sm font-semibold text-slate-700">Price per Night ($)</label>
-                <div class="relative">
-                  <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400 font-medium">$</span>
-                  <input type="number" min="0" step="0.01" name="price" id="price" placeholder="0.00" class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all outline-none">
-                </div>
-              </div>
-              
-              <!-- Image Upload -->
-              <div class="space-y-2">
-                <label for="image" class="block text-sm font-semibold text-slate-700">Room Image</label>
-                <input type="file" name="image" id="image" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 transition-all cursor-pointer text-slate-500 focus:outline-none">
-              </div>
-            </div>
+<!-- Display Success Message -->
+@if(session()->has('message'))
+    <div style="background-color: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+        {{ session()->get('message') }}
+    </div>
+@endif
+  <form action="{{ url('add_room') }}" method="post" enctype="multipart/form-data" class="space-y-4">
+    @csrf
 
-            <!-- Description -->
-            <div class="space-y-2">
-              <label for="description" class="block text-sm font-semibold text-slate-700">Description</label>
-              <textarea name="description" id="description" rows="4" placeholder="Enter a detailed description of the room..." class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all outline-none resize-none"></textarea>
-            </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-            <div>
-              <label class="flex items-center space-x-2">Free Wifi</label>
-               <select>
-                <option value="1">Available</option>
-                <option value="0">Not Available</option>
-               </select>
-              
-            </div>
+      <!-- Room Title -->
+      <div class="md:col-span-2">
+        <label for="title" class="block text-sm font-medium text-gray-700 mb-1">Room Title / Name</label>
+        <input type="text" name="title" id="title" required placeholder="e.g. Deluxe Ocean View Suite" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+      </div>
 
-            <!-- Submit Button -->
-            <div class="pt-4 flex justify-end">
-              <button type="submit" class="px-8 py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-xl shadow-lg shadow-slate-900/20 hover:shadow-xl hover:shadow-slate-900/30 hover:-translate-y-0.5 transition-all duration-200">
-                Add Room
-              </button>
-            </div>
-            
-          </form>
-        </div>
+      <!-- Hotel Name -->
+      <div>
+        <label for="hotel_name" class="block text-sm font-medium text-gray-700 mb-1">Hotel Name</label>
+        <input type="text" name="hotel_name" id="hotel_name" placeholder="e.g. Grand Resort & Spa" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+      </div>
+
+      <!-- Room Type -->
+      <div>
+        <label for="room_type" class="block text-sm font-medium text-gray-700 mb-1">Room Type</label>
+        <select name="room_type" id="room_type" required class="w-full px-3 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:border-blue-500">
+          <option value="" disabled selected>Select Room Type</option>
+          <option value="Single">Single</option>
+          <option value="Double">Double</option>
+          <option value="Deluxe">Deluxe</option>
+          <option value="Suite">Suite</option>
+        </select>
+      </div>
+
+      <!-- Capacity Adults -->
+      <div>
+        <label for="capacity_adults" class="block text-sm font-medium text-gray-700 mb-1">Adult Capacity</label>
+        <input type="number" min="1" name="capacity_adults" id="capacity_adults" placeholder="e.g. 2" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+      </div>
+
+      <!-- Capacity Children -->
+      <div>
+        <label for="capacity_children" class="block text-sm font-medium text-gray-700 mb-1">Children Capacity</label>
+        <input type="number" min="0" name="capacity_children" id="capacity_children" placeholder="e.g. 1" value="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+      </div>
+
+      <div>
+  <label for="price" class="block text-sm font-medium text-gray-700 mb-1">Price per Night ($)</label>
+  <input 
+    type="number" 
+    step="0.01" 
+    name="price" 
+    id="price" 
+    required 
+    placeholder="0.00" 
+    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+  >
+</div>
+
+      <!-- Image Upload -->
+      <div>
+        <label for="image" class="block text-sm font-medium text-gray-700 mb-1">Room Image</label>
+        <input type="file" name="image" id="image" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200 cursor-pointer">
+      </div>
+
+      <!-- WiFi Availability -->
+      <div>
+        <label for="wifi" class="block text-sm font-medium text-gray-700 mb-1">Free WiFi</label>
+        <select name="wifi" id="wifi" class="w-full px-3 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:border-blue-500">
+          <option value="1">Available</option>
+          <option value="0">Not Available</option>
+        </select>
+      </div>
+
+      <!-- Room Availability -->
+      <div>
+        <label for="is_available" class="block text-sm font-medium text-gray-700 mb-1">Availability Status</label>
+        <select name="is_available" id="is_available" class="w-full px-3 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:border-blue-500">
+          <option value="1">Available</option>
+          <option value="0">Booked / Maintenance</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div>
+      <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+      <textarea name="description" id="description" rows="3" placeholder="Enter room details..." class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"></textarea>
+    </div>
+
+    <!-- Checkbox -->
+    <div class="flex items-center">
+      <input type="checkbox" name="is_featured" id="is_featured" value="1" class="h-4 w-4 text-blue-600 border-gray-300 rounded">
+      <label for="is_featured" class="ml-2 text-sm text-gray-700 font-medium">Feature on Homepage</label>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="pt-2">
+      <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-150">
+        Add Room
+      </button>
+    </div>
+
+  </form>
+</div>
       </div>
       
     </main>
 
     <!-- Footer -->
-    {{-- Assuming there is a footer component --}}
     @if(View::exists('admin.footer'))
         @include('admin.footer')
     @endif
