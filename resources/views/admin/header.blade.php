@@ -20,14 +20,15 @@
            <div class="hidden md:flex flex-col">
              <span class="text-sm text-slate-500">Administrator</span>
           </div>
-         <!--logput button-->
-         <form method="POST" action="{{ route('logout') }}" x-data>
-            @csrf
-
-              <x-dropdown-link href="{{ route('logout') }}"
-              @click.prevent="$root.submit();">
-              {{ __('Log Out') }}
-              </x-dropdown-link>
+          <!-- logout button -->
+          <form method="POST" action="{{ route('logout') }}">
+             @csrf
+             <button type="submit" class="inline-flex items-center gap-2 bg-rose-50 text-rose-600 hover:bg-rose-100 hover:text-rose-700 px-3.5 py-1.5 rounded-lg text-sm font-semibold transition duration-150 border border-rose-100/80 shadow-sm cursor-pointer">
+               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+               </svg>
+               Log Out
+             </button>
           </form>
 
         </div>

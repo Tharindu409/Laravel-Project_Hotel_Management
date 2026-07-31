@@ -75,7 +75,12 @@
               <!-- Hotel Name -->
               <div>
                 <label for="hotel_name" class="block text-sm font-medium text-gray-700 mb-1">Hotel Name</label>
-                <input type="text" name="hotel_name" id="hotel_name" value="{{ old('hotel_name', $room->hotel_name) }}" placeholder="e.g. Grand Resort & Spa" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                <select name="hotel_name" id="hotel_name" required class="w-full px-3 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:border-blue-500">
+                  <option value="" disabled>Select Hotel</option>
+                  <option value="Benthota Beach" {{ old('hotel_name', $room->hotel_name) == 'Benthota Beach' ? 'selected' : '' }}>Benthota Beach</option>
+                  <option value="BenthotaRiver" {{ old('hotel_name', $room->hotel_name) == 'BenthotaRiver' ? 'selected' : '' }}>BenthotaRiver</option>
+                  <option value="Benthota spa" {{ old('hotel_name', $room->hotel_name) == 'Benthota spa' ? 'selected' : '' }}>Benthota spa</option>
+                </select>
               </div>
 
               <!-- Room Type -->

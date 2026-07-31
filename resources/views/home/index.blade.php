@@ -121,6 +121,7 @@
         <div class="h-1 w-20 bg-amber-400 mx-auto mt-6 mb-6"></div>
         <p class="text-slate-500 text-lg">Each resort sits steps from the sand, with its own character and stunning views of the Sri Lankan Coast.</p>
       </div>
+       
 
       <div class="grid sm:grid-cols-3 gap-8">
         <div class="rounded-xl overflow-hidden shadow-lg group bg-slate-50 hover:shadow-2xl transition duration-300">
@@ -147,6 +148,98 @@
             <a href="#" class="inline-block mt-4 text-sm font-semibold text-amber-500 hover:text-amber-400 uppercase tracking-widest border-b border-amber-500 pb-1">Explore Spa Resort</a>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dynamic Rooms Section -->
+  <section class="bg-slate-50 py-24 border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-amber-500 text-[10px] font-bold uppercase tracking-widest">Our Accommodations</span>
+        <h2 class="font-display text-4xl sm:text-5xl font-bold text-slate-900 mt-4 font-semibold">Luxurious Rooms &amp; Suites</h2>
+        <div class="h-1 w-20 bg-amber-400 mx-auto mt-6 mb-6"></div>
+        <p class="text-slate-500 text-lg">Browse our hand-selected accommodations at our premier Benthota locations.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        @forelse($room as $r)
+          <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 flex flex-col border border-slate-100 group">
+            <!-- Room Image -->
+            <div class="h-64 overflow-hidden relative bg-slate-100">
+              @if($r->image)
+                <img src="{{ asset('room_images/' . $r->image) }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="{{ $r->title }}">
+              @else
+                <div class="w-full h-full bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center text-amber-500 font-display font-medium text-lg">
+                  Benthota Luxury
+                </div>
+              @endif
+              <div class="absolute top-4 right-4 bg-slate-900/90 text-white text-xs font-semibold px-3 py-1.5 rounded-full border border-white/10 uppercase tracking-wider backdrop-blur-sm">
+                {{ $r->room_type }}
+              </div>
+            </div>
+
+            <!-- Card Content Body -->
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <!-- Hotel Location Badge -->
+                <span class="text-[10px] uppercase font-bold text-amber-500 tracking-wider">
+                  {{ $r->hotel_name }}
+                </span>
+                
+                <h3 class="font-display font-bold text-2xl text-slate-900 mt-2 hover:text-amber-600 transition truncate" title="{{ $r->title }}">
+                  {{ $r->title }}
+                </h3>
+                
+                <p class="text-slate-500 text-sm mt-3 line-clamp-2" title="{{ $r->description }}">
+                  {{ $r->description }}
+                </p>
+
+                <!-- Room Specifications -->
+                <div class="flex items-center gap-6 mt-6 py-4 border-t border-b border-slate-100 text-xs text-slate-500 font-medium">
+                  <div class="flex items-center gap-1.5">
+                    <span>Adults: <strong>{{ $r->capacity_adults }}</strong></span>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <span>Children: <strong>{{ $r->capacity_children }}</strong></span>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    @if($r->is_available)
+                      <span class="text-emerald-600 flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span> Available
+                      </span>
+                    @else
+                      <span class="text-rose-600 flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 bg-rose-500 rounded-full"></span> Full
+                      </span>
+                    @endif
+                  </div>
+                </div>
+              </div>
+
+              <!-- Price & Booking Button -->
+              <div class="flex items-center justify-between mt-6 pt-2">
+                <div>
+                  <span class="text-[10px] text-slate-400 uppercase font-bold tracking-wider block">Price per night</span>
+                  <span class="text-2xl font-bold text-slate-900 font-display">${{ number_format($r->price_per_night, 2) }}</span>
+                </div>
+                <div>
+                  <a href="#" class="inline-flex items-center justify-center bg-slate-900 hover:bg-amber-500 hover:text-slate-900 text-white font-bold text-[10px] tracking-widest uppercase px-5 py-3 rounded-lg transition duration-205 shadow-md">
+                    Book Stay
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        @empty
+          <div class="col-span-3 text-center py-12 text-slate-400">
+            <svg class="w-16 h-16 mx-auto text-slate-300 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"/>
+            </svg>
+            <p class="font-display text-xl text-slate-500 font-medium">No active rooms found</p>
+            <p class="text-xs text-slate-400 mt-2">Check back soon for available suites and villas.</p>
+          </div>
+        @endforelse
       </div>
     </div>
   </section>
