@@ -72,14 +72,11 @@
         <input type="text" name="title" id="title" required placeholder="e.g. Deluxe Ocean View Suite" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
       </div>
 
-      <!-- Hotel Name -->
+      <!-- Property Name -->
       <div>
-        <label for="hotel_name" class="block text-sm font-medium text-gray-700 mb-1">Hotel Name</label>
+        <label for="hotel_name" class="block text-sm font-medium text-gray-700 mb-1">Property Name</label>
         <select name="hotel_name" id="hotel_name" required class="w-full px-3 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:border-blue-500">
-          <option value="" disabled selected>Select Hotel</option>
-          <option value="Benthota Beach">Benthota Beach</option>
-          <option value="BenthotaRiver">Benthota River</option>
-          <option value="Benthota spa">Benthota spa</option>
+          <option value="Benthota Resort" selected>Benthota Resort</option>
         </select>
       </div>
 

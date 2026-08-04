@@ -3,7 +3,7 @@
     <!-- Logo -->
     <div class="flex items-center gap-2 text-white shrink-0">
       <span class="font-display text-2xl tracking-wide font-bold">BENTHOTA</span>
-      <span class="text-[10px] tracking-[0.3em] text-amber-400 hidden sm:block mt-1">RESORTS</span>
+      <span class="text-[10px] tracking-[0.3em] text-amber-400 hidden sm:block mt-1">RESORT</span>
     </div>
 
     <!-- Main Navigation Links -->

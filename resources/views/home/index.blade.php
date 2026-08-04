@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Benthota Resorts — Sri Lanka Beach Resorts</title>
+<title>Benthota Resort — Sri Lanka Beach Resort</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -71,7 +71,7 @@
           Experience Ultimate Luxury
         </h1>
         <p class="mt-6 text-white/90 text-lg md:text-xl max-w-2xl drop-shadow-md">
-          Book a stay at our serene Sri Lanka beach resorts and enjoy sacred time with family and friends.
+          Book a stay at our serene Benthota Resort and enjoy sacred time with family and friends.
         </p>
 
         <!-- Advanced Booking Search (Horizontal) -->
@@ -79,9 +79,7 @@
           <div class="flex-1 mb-4 md:mb-0 relative">
             <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Location</label>
             <select class="w-full appearance-none bg-transparent border-b-2 border-slate-200 pb-2 text-slate-800 focus:outline-none focus:border-amber-400 font-medium cursor-pointer">
-              <option>Benthota Beach Resort</option>
-              <option>Benthota River Resort</option>
-              <option>Benthota Spa Resort</option>
+              <option>Benthota Resort</option>
             </select>
           </div>
           <div class="flex-1 mb-4 md:mb-0">
@@ -117,9 +115,9 @@
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center max-w-2xl mx-auto mb-16">
         <span class="text-amber-500 text-[10px] font-bold uppercase tracking-widest">Featured Destinations</span>
-        <h2 class="font-display text-4xl sm:text-5xl font-bold text-slate-900 mt-4">Discover Our Properties</h2>
+        <h2 class="font-display text-4xl sm:text-5xl font-bold text-slate-900 mt-4">Discover Our Resort</h2>
         <div class="h-1 w-20 bg-amber-400 mx-auto mt-6 mb-6"></div>
-        <p class="text-slate-500 text-lg">Each resort sits steps from the sand, with its own character and stunning views of the Sri Lankan Coast.</p>
+        <p class="text-slate-500 text-lg">Every corner of Benthota Resort is designed for comfort, calm, and unforgettable views of the Sri Lankan coast.</p>
       </div>
        
 
@@ -127,25 +125,25 @@
         <div class="rounded-xl overflow-hidden shadow-lg group bg-slate-50 hover:shadow-2xl transition duration-300">
           <div class="h-64 bg-cover bg-center group-hover:scale-105 transition duration-700" style="background-image:url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=600&q=80')"></div>
           <div class="p-6 text-center">
-            <h3 class="font-display font-semibold text-xl text-slate-900">Benthota Beach</h3>
-            <p class="text-sm text-slate-500 mt-2">Beachfront rooms with private balconies and infinity pools.</p>
-            <a href="#" class="inline-block mt-4 text-sm font-semibold text-amber-500 hover:text-amber-400 uppercase tracking-widest border-b border-amber-500 pb-1">Explore Beach Resort</a>
+            <h3 class="font-display font-semibold text-xl text-slate-900">Benthota Resort</h3>
+            <p class="text-sm text-slate-500 mt-2">Signature suites with private balconies and infinity pools overlooking the coast.</p>
+            <a href="#" class="inline-block mt-4 text-sm font-semibold text-amber-500 hover:text-amber-400 uppercase tracking-widest border-b border-amber-500 pb-1">Explore Benthota Resort</a>
           </div>
         </div>
         <div class="rounded-xl overflow-hidden shadow-lg group bg-slate-50 hover:shadow-2xl transition duration-300">
           <div class="h-64 bg-cover bg-center group-hover:scale-105 transition duration-700" style="background-image:url('https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=600&q=80')"></div>
           <div class="p-6 text-center">
-            <h3 class="font-display font-semibold text-xl text-slate-900">Benthota River</h3>
-            <p class="text-sm text-slate-500 mt-2">Private river club and tropical pool nestled in nature.</p>
-            <a href="#" class="inline-block mt-4 text-sm font-semibold text-amber-500 hover:text-amber-400 uppercase tracking-widest border-b border-amber-500 pb-1">Explore River Resort</a>
+            <h3 class="font-display font-semibold text-xl text-slate-900">Benthota Resort</h3>
+            <p class="text-sm text-slate-500 mt-2">Elegant rooms with lush garden views and serene lounging spaces.</p>
+            <a href="#" class="inline-block mt-4 text-sm font-semibold text-amber-500 hover:text-amber-400 uppercase tracking-widest border-b border-amber-500 pb-1">Explore Benthota Resort</a>
           </div>
         </div>
         <div class="rounded-xl overflow-hidden shadow-lg group bg-slate-50 hover:shadow-2xl transition duration-300">
           <div class="h-64 bg-cover bg-center group-hover:scale-105 transition duration-700" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80')"></div>
           <div class="p-6 text-center">
-            <h3 class="font-display font-semibold text-xl text-slate-900">Benthota Spa</h3>
-            <p class="text-sm text-slate-500 mt-2">Classic luxury charm boasting our five-star wellness center.</p>
-            <a href="#" class="inline-block mt-4 text-sm font-semibold text-amber-500 hover:text-amber-400 uppercase tracking-widest border-b border-amber-500 pb-1">Explore Spa Resort</a>
+            <h3 class="font-display font-semibold text-xl text-slate-900">Benthota Resort</h3>
+            <p class="text-sm text-slate-500 mt-2">Luxury stays infused with wellness, comfort, and spa-inspired details.</p>
+            <a href="#" class="inline-block mt-4 text-sm font-semibold text-amber-500 hover:text-amber-400 uppercase tracking-widest border-b border-amber-500 pb-1">Explore Benthota Resort</a>
           </div>
         </div>
       </div>
@@ -159,11 +157,11 @@
         <span class="text-amber-500 text-[10px] font-bold uppercase tracking-widest">Our Accommodations</span>
         <h2 class="font-display text-4xl sm:text-5xl font-bold text-slate-900 mt-4 font-semibold">Luxurious Rooms &amp; Suites</h2>
         <div class="h-1 w-20 bg-amber-400 mx-auto mt-6 mb-6"></div>
-        <p class="text-slate-500 text-lg">Browse our hand-selected accommodations at our premier Benthota locations.</p>
+        <p class="text-slate-500 text-lg">Browse our hand-selected accommodations at our premier Benthota Resort.</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
-        @forelse($room as $r)
+        @forelse($rooms ?? [] as $r)
           <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 flex flex-col border border-slate-100 group">
             <!-- Room Image -->
             <div class="h-64 overflow-hidden relative bg-slate-100">
@@ -224,9 +222,9 @@
                   <span class="text-2xl font-bold text-slate-900 font-display">${{ number_format($r->price_per_night, 2) }}</span>
                 </div>
                 <div>
-                  <a href="#" class="inline-flex items-center justify-center bg-slate-900 hover:bg-amber-500 hover:text-slate-900 text-white font-bold text-[10px] tracking-widest uppercase px-5 py-3 rounded-lg transition duration-205 shadow-md">
+                  <button type="button" data-room-id="{{ $r->id }}" data-room-title="{{ $r->title }}" class="open-reserve-modal inline-flex items-center justify-center bg-slate-900 hover:bg-amber-500 hover:text-slate-900 text-white font-bold text-[10px] tracking-widest uppercase px-5 py-3 rounded-lg transition duration-205 shadow-md">
                     Book Stay
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -243,6 +241,71 @@
       </div>
     </div>
   </section>
+
+  @if(session()->has('message'))
+    <div class="fixed top-5 right-5 z-50 rounded-lg bg-emerald-600 px-4 py-3 text-sm font-semibold text-white shadow-lg">
+      {{ session()->get('message') }}
+    </div>
+  @endif
+
+  <div id="reservation-modal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-slate-950/70 px-4">
+    <div class="w-full max-w-2xl rounded-2xl bg-white p-6 shadow-2xl">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h3 class="text-xl font-bold text-slate-900">Reserve Your Stay</h3>
+          <p id="modal-room-title" class="text-sm text-slate-500"></p>
+        </div>
+        <button type="button" id="close-reservation-modal" class="text-slate-500 hover:text-slate-900">✕</button>
+      </div>
+      <form action="{{ url('/reserve') }}" method="POST" class="grid gap-4 md:grid-cols-2">
+        @csrf
+        <input type="hidden" name="room_id" id="reservation-room-id">
+        <input name="name" required placeholder="Your full name" class="border rounded px-3 py-2 md:col-span-2">
+        <input name="email" type="email" required placeholder="Email address" class="border rounded px-3 py-2">
+        <input name="phone" placeholder="Phone number" class="border rounded px-3 py-2">
+        <input type="date" name="check_in_date" required class="border rounded px-3 py-2">
+        <input type="date" name="check_out_date" required class="border rounded px-3 py-2">
+        <input type="number" name="guests_count" min="1" value="1" required class="border rounded px-3 py-2">
+        <textarea name="notes" rows="3" placeholder="Notes or arrival time" class="border rounded px-3 py-2 md:col-span-2"></textarea>
+        <button class="md:col-span-2 rounded bg-amber-500 px-4 py-3 font-semibold text-white">Request Reservation</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const modal = document.getElementById('reservation-modal');
+      const roomIdInput = document.getElementById('reservation-room-id');
+      const roomTitle = document.getElementById('modal-room-title');
+      const openButtons = document.querySelectorAll('.open-reserve-modal');
+      const closeButton = document.getElementById('close-reservation-modal');
+
+      openButtons.forEach((button) => {
+        button.addEventListener('click', function () {
+          roomIdInput.value = this.dataset.roomId;
+          roomTitle.textContent = this.dataset.roomTitle;
+          modal.classList.remove('hidden');
+          modal.classList.add('flex');
+        });
+      });
+
+      if (closeButton) {
+        closeButton.addEventListener('click', function () {
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
+        });
+      }
+
+      if (modal) {
+        modal.addEventListener('click', function (event) {
+          if (event.target === modal) {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+          }
+        });
+      }
+    });
+  </script>
 
   <!-- Why Choose Us & Statistics -->
   <section class="bg-slate-900 text-white relative py-24 object-cover" style="background-image: linear-gradient(rgba(15,23,42,0.85), rgba(15,23,42,0.85)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1920&q=80'); background-attachment: fixed; background-size: cover; background-position: center;">
@@ -397,7 +460,7 @@
           <div class="swiper-slide cursor-grab">
             <svg class="w-10 h-10 mx-auto text-amber-400/50 mb-6" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
             <p class="text-xl md:text-2xl font-display font-medium text-white/90 leading-relaxed italic mb-8">
-              "An absolutely perfect honeymoon destination. The Ocean View Suite at Benthota Beach exceeded every expectation. We will be coming back every anniversary if we can help it!"
+              "An absolutely perfect honeymoon destination. The Ocean View Suite at Benthota Resort exceeded every expectation. We will be coming back every anniversary if we can help it!"
             </p>
             <div class="font-bold text-amber-400">Sarah & James T.</div>
             <div class="text-sm text-white/50 mt-1">Stayed July 2025</div>
@@ -406,7 +469,7 @@
           <div class="swiper-slide cursor-grab">
             <svg class="w-10 h-10 mx-auto text-amber-400/50 mb-6" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
             <p class="text-xl md:text-2xl font-display font-medium text-white/90 leading-relaxed italic mb-8">
-              "The 24/7 service and tropical dining at Benthota River made our corporate retreat wildly successful. The attention to detail from the staff is just incredible."
+              "The 24/7 service and tropical dining at Benthota Resort made our corporate retreat wildly successful. The attention to detail from the staff is just incredible."
             </p>
             <div class="font-bold text-amber-400">Michael R.</div>
             <div class="text-sm text-white/50 mt-1">Stayed September 2025</div>
@@ -459,7 +522,7 @@
             </span>
           </summary>
           <div class="mt-4 text-slate-500 leading-relaxed">
-            We love animals, but to ensure the luxury experience and allergy-safety for all guests, pets are currently not permitted at any of our three resort locations. Service animals are always welcome.
+            We love animals, but to ensure the luxury experience and allergy-safety for all guests, pets are currently not permitted at our resort. Service animals are always welcome.
           </div>
         </details>
         <details class="bg-white p-6 rounded-lg shadow-sm group cursor-pointer">

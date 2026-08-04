@@ -3,7 +3,7 @@
       <div>
         <span class="font-display text-2xl text-white">BENTHOTA</span>
         <p class="text-xs tracking-[0.3em] text-amber-300 mt-1">RESORTS</p>
-        <p class="text-sm mt-4">Serene Sri Lanka beach resorts for family and friends.</p>
+        <p class="text-sm mt-4">Serene Sri Lanka beach resort for family and friends.</p>
       </div>
       <div>
         <h4 class="text-white font-semibold mb-3 text-sm">Explore</h4>
@@ -28,6 +28,6 @@
       </div>
     </div>
     <div class="max-w-7xl mx-auto px-6 mt-10 pt-6 border-t border-white/10 text-xs text-white/40">
-      © 2026 Benthota Resorts. All rights reserved.
+      © 2026 Benthota Resort. All rights reserved.
     </div>
   </footer>

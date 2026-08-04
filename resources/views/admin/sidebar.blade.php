@@ -1,6 +1,6 @@
  <aside class="w-64 bg-slate-900 text-white flex flex-col">
     <div class="p-6 text-2xl font-bold border-b border-slate-700">
-      Hotel Admin
+      Resort Admin
     </div>
 
     <nav class="flex-1 p-4 text-sm overflow-y-auto">
@@ -23,9 +23,9 @@
           </ul>
         </li>
 
-        <li><a href="#" class="block py-2 px-3 rounded hover:bg-slate-800 font-medium">📅 Bookings</a></li>
-        <li><a href="#" class="block py-2 px-3 rounded hover:bg-slate-800 font-medium">👤 Customers</a></li>
-        <li><a href="#" class="block py-2 px-3 rounded hover:bg-slate-800 font-medium">💳 Payments</a></li>
+        <li><a href="{{ url('/bookings') }}" class="block py-2 px-3 rounded hover:bg-slate-800 font-medium">📅 Bookings</a></li>
+        <li><a href="{{ url('/customers') }}" class="block py-2 px-3 rounded hover:bg-slate-800 font-medium">👤 Customers</a></li>
+        <li><a href="{{ url('/payments') }}" class="block py-2 px-3 rounded hover:bg-slate-800 font-medium">💳 Payments</a></li>
         <li><a href="#" class="block py-2 px-3 rounded hover:bg-slate-800 font-medium">👨‍💼 Staff</a></li>
         <li><a href="#" class="block py-2 px-3 rounded hover:bg-slate-800 font-medium">🧹 Maintenance</a></li>
         <li><a href="#" class="block py-2 px-3 rounded hover:bg-slate-800 font-medium">📈 Reports</a></li>
