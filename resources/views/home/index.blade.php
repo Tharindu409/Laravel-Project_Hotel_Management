@@ -178,56 +178,108 @@
             </div>
 
             <!-- Card Content Body -->
-            <div class="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <!-- Hotel Location Badge -->
-                <span class="text-[10px] uppercase font-bold text-amber-500 tracking-wider">
-                  {{ $r->hotel_name }}
-                </span>
-                
-                <h3 class="font-display font-bold text-2xl text-slate-900 mt-2 hover:text-amber-600 transition truncate" title="{{ $r->title }}">
-                  {{ $r->title }}
-                </h3>
-                
-                <p class="text-slate-500 text-sm mt-3 line-clamp-2" title="{{ $r->description }}">
-                  {{ $r->description }}
-                </p>
+            <!-- Card Content Body -->
+<div class="p-4 flex-1 flex flex-col justify-between">
 
-                <!-- Room Specifications -->
-                <div class="flex items-center gap-6 mt-6 py-4 border-t border-b border-slate-100 text-xs text-slate-500 font-medium">
-                  <div class="flex items-center gap-1.5">
-                    <span>Adults: <strong>{{ $r->capacity_adults }}</strong></span>
-                  </div>
-                  <div class="flex items-center gap-1.5">
-                    <span>Children: <strong>{{ $r->capacity_children }}</strong></span>
-                  </div>
-                  <div class="flex items-center gap-1.5">
-                    @if($r->is_available)
-                      <span class="text-emerald-600 flex items-center gap-1">
-                        <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span> Available
-                      </span>
-                    @else
-                      <span class="text-rose-600 flex items-center gap-1">
-                        <span class="w-1.5 h-1.5 bg-rose-500 rounded-full"></span> Full
-                      </span>
-                    @endif
-                  </div>
-                </div>
-              </div>
+  <div>
 
-              <!-- Price & Booking Button -->
-              <div class="flex items-center justify-between mt-6 pt-2">
-                <div>
-                  <span class="text-[10px] text-slate-400 uppercase font-bold tracking-wider block">Price per night</span>
-                  <span class="text-2xl font-bold text-slate-900 font-display">${{ number_format($r->price_per_night, 2) }}</span>
-                </div>
-                <div>
-                  <button type="button" data-room-id="{{ $r->id }}" data-room-title="{{ $r->title }}" class="open-reserve-modal inline-flex items-center justify-center bg-slate-900 hover:bg-amber-500 hover:text-slate-900 text-white font-bold text-[10px] tracking-widest uppercase px-5 py-3 rounded-lg transition duration-205 shadow-md">
-                    Book Stay
-                  </button>
-                </div>
-              </div>
-            </div>
+    <!-- Hotel Location Badge -->
+    <span class="text-[10px] uppercase font-bold text-amber-500 tracking-wider">
+      {{ $r->hotel_name }}
+    </span>
+
+    <!-- Room Title -->
+    <h3 class="font-display font-bold text-lg text-slate-900 mt-2 hover:text-amber-600 transition truncate"
+        title="{{ $r->title }}">
+      {{ $r->title }}
+    </h3>
+
+    <!-- Description -->
+    <p class="text-slate-500 text-xs mt-2 line-clamp-2 leading-relaxed"
+       title="{{ $r->description }}">
+      {{ $r->description }}
+    </p>
+
+
+    <!-- Room Specifications -->
+    <div class="flex items-center justify-between mt-4 py-3 border-t border-b border-slate-100 text-[11px] text-slate-500 font-medium">
+
+      <div>
+        <span class="block text-slate-400 uppercase text-[9px]">
+          Adults
+        </span>
+        <strong class="text-slate-800">
+          {{ $r->capacity_adults }}
+        </strong>
+      </div>
+
+
+      <div>
+        <span class="block text-slate-400 uppercase text-[9px]">
+          Children
+        </span>
+        <strong class="text-slate-800">
+          {{ $r->capacity_children }}
+        </strong>
+      </div>
+
+
+      <div>
+        @if($r->is_available)
+
+          <span class="text-emerald-600 flex items-center gap-1">
+            <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>
+            Available
+          </span>
+
+        @else
+
+          <span class="text-rose-600 flex items-center gap-1">
+            <span class="w-1.5 h-1.5 bg-rose-500 rounded-full"></span>
+            Full
+          </span>
+
+        @endif
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- Price & Booking Button -->
+  <div class="flex items-center justify-between mt-4">
+
+
+    <!-- Price -->
+    <div>
+
+      <span class="text-[9px] text-slate-400 uppercase font-bold tracking-wider block">
+        Per Night
+      </span>
+
+      <span class="text-xl font-bold text-slate-900 font-display">
+        ${{ number_format($r->price_per_night, 2) }}
+      </span>
+
+    </div>
+
+
+    <!-- Button -->
+    <button 
+      type="button"
+      data-room-id="{{ $r->id }}"
+      data-room-title="{{ $r->title }}"
+      class="open-reserve-modal bg-slate-900 hover:bg-amber-500 hover:text-slate-900 text-white font-bold text-[10px] tracking-widest uppercase px-4 py-2 rounded-lg transition duration-300 shadow-md">
+
+      Book Now
+
+    </button>
+
+
+  </div>
+
+</div>
           </div>
         @empty
           <div class="col-span-3 text-center py-12 text-slate-400">
