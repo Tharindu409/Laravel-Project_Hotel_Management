@@ -75,80 +75,222 @@
         </p>
 
         <!-- Advanced Booking Search (Horizontal) -->
-        <div class="mt-12 bg-white rounded-xl shadow-2xl p-6 w-full max-w-6xl md:flex md:items-end gap-6 text-left">
+        <form method="GET" action="{{ url('/') }}" class="mt-12 bg-white rounded-xl shadow-2xl p-6 w-full max-w-6xl md:flex md:items-end gap-6 text-left">
           <div class="flex-1 mb-4 md:mb-0 relative">
             <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Location</label>
-            <select class="w-full appearance-none bg-transparent border-b-2 border-slate-200 pb-2 text-slate-800 focus:outline-none focus:border-amber-400 font-medium cursor-pointer">
-              <option>Benthota Resort</option>
+            <select name="location" class="w-full appearance-none bg-transparent border-b-2 border-slate-200 pb-2 text-slate-800 focus:outline-none focus:border-amber-400 font-medium cursor-pointer">
+              <option value="Benthota Resort" selected>Benthota Resort</option>
             </select>
           </div>
           <div class="flex-1 mb-4 md:mb-0">
             <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Check In</label>
-            <input type="date" class="w-full bg-transparent border-b-2 border-slate-200 pb-2 text-slate-800 focus:outline-none focus:border-amber-400 font-medium cursor-pointer" />
+            <input name="check_in_date" type="date" value="{{ request('check_in_date') }}" class="w-full bg-transparent border-b-2 border-slate-200 pb-2 text-slate-800 focus:outline-none focus:border-amber-400 font-medium cursor-pointer" />
           </div>
           <div class="flex-1 mb-4 md:mb-0">
             <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Check Out</label>
-            <input type="date" class="w-full bg-transparent border-b-2 border-slate-200 pb-2 text-slate-800 focus:outline-none focus:border-amber-400 font-medium cursor-pointer" />
+            <input name="check_out_date" type="date" value="{{ request('check_out_date') }}" class="w-full bg-transparent border-b-2 border-slate-200 pb-2 text-slate-800 focus:outline-none focus:border-amber-400 font-medium cursor-pointer" />
           </div>
           <div class="flex-1 mb-6 md:mb-0">
             <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Guests & Rooms</label>
-            <select class="w-full appearance-none bg-transparent border-b-2 border-slate-200 pb-2 text-slate-800 focus:outline-none focus:border-amber-400 font-medium cursor-pointer">
-              <option>1 Room, 2 Adults</option>
-              <option>1 Room, 2 Adults, 2 Children</option>
-              <option>2 Rooms, 4 Adults</option>
+            <select name="guest_selection" class="w-full appearance-none bg-transparent border-b-2 border-slate-200 pb-2 text-slate-800 focus:outline-none focus:border-amber-400 font-medium cursor-pointer">
+              <option value="1,2,0" {{ request('guest_selection') === '1,2,0' ? 'selected' : '' }}>1 Room, 2 Adults</option>
+              <option value="1,2,2" {{ request('guest_selection') === '1,2,2' ? 'selected' : '' }}>1 Room, 2 Adults, 2 Children</option>
+              <option value="2,4,0" {{ request('guest_selection') === '2,4,0' ? 'selected' : '' }}>2 Rooms, 4 Adults</option>
             </select>
           </div>
           <div>
-            <button class="w-full md:w-auto bg-amber-500 hover:bg-amber-400 text-white font-bold tracking-widest uppercase text-[11px] px-8 py-4 rounded transition shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+            <button type="submit" class="w-full md:w-auto bg-amber-500 hover:bg-amber-400 text-white font-bold tracking-widest uppercase text-[11px] px-8 py-4 rounded transition shadow-lg hover:shadow-xl hover:-translate-y-0.5">
               Check Availability
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
     </div>
     </div>
   </div>
 
-  <!-- Properties Section (Featured Rooms equivalent) -->
-  <section class="bg-white py-24">
+   <!-- Resort Experiences Section -->
+<section class="bg-white py-20">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center max-w-2xl mx-auto mb-16">
-        <span class="text-amber-500 text-[10px] font-bold uppercase tracking-widest">Featured Destinations</span>
-        <h2 class="font-display text-4xl sm:text-5xl font-bold text-slate-900 mt-4">Discover Our Resort</h2>
-        <div class="h-1 w-20 bg-amber-400 mx-auto mt-6 mb-6"></div>
-        <p class="text-slate-500 text-lg">Every corner of Benthota Resort is designed for comfort, calm, and unforgettable views of the Sri Lankan coast.</p>
-      </div>
-       
 
-      <div class="grid sm:grid-cols-3 gap-8">
-        <div class="rounded-xl overflow-hidden shadow-lg group bg-slate-50 hover:shadow-2xl transition duration-300">
-          <div class="h-64 bg-cover bg-center group-hover:scale-105 transition duration-700" style="background-image:url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=600&q=80')"></div>
-          <div class="p-6 text-center">
-            <h3 class="font-display font-semibold text-xl text-slate-900">Benthota Resort</h3>
-            <p class="text-sm text-slate-500 mt-2">Signature suites with private balconies and infinity pools overlooking the coast.</p>
-            <a href="#" class="inline-block mt-4 text-sm font-semibold text-amber-500 hover:text-amber-400 uppercase tracking-widest border-b border-amber-500 pb-1">Explore Benthota Resort</a>
-          </div>
+        <!-- Section Header -->
+        <div class="text-center max-w-2xl mx-auto mb-12">
+
+            <span class="text-amber-500 text-[10px] font-bold uppercase tracking-widest">
+                Resort Experiences
+            </span>
+
+            <h2 class="font-display text-4xl sm:text-5xl font-bold text-slate-900 mt-4">
+                Discover Benthota Resort
+            </h2>
+
+            <div class="h-1 w-20 bg-amber-400 mx-auto mt-6 mb-5"></div>
+
+            <p class="text-slate-500 text-lg">
+                Relax, explore, and enjoy unforgettable moments with our premium resort facilities.
+            </p>
+
         </div>
-        <div class="rounded-xl overflow-hidden shadow-lg group bg-slate-50 hover:shadow-2xl transition duration-300">
-          <div class="h-64 bg-cover bg-center group-hover:scale-105 transition duration-700" style="background-image:url('https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=600&q=80')"></div>
-          <div class="p-6 text-center">
-            <h3 class="font-display font-semibold text-xl text-slate-900">Benthota Resort</h3>
-            <p class="text-sm text-slate-500 mt-2">Elegant rooms with lush garden views and serene lounging spaces.</p>
-            <a href="#" class="inline-block mt-4 text-sm font-semibold text-amber-500 hover:text-amber-400 uppercase tracking-widest border-b border-amber-500 pb-1">Explore Benthota Resort</a>
-          </div>
+
+
+        <!-- Experience Cards -->
+        <div class="grid md:grid-cols-3 gap-7">
+
+
+            <!-- Beach Bar Card -->
+            <div class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-500 border border-slate-100">
+
+                <div class="h-56 overflow-hidden relative">
+
+                    <img 
+                    src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=700&q=80"
+                    class="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+                    alt="Beach Bar">
+
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+
+
+                    <div class="absolute bottom-5 left-5 text-white">
+
+                        <h3 class="font-display text-2xl font-bold">
+                            Ocean Beach Bar
+                        </h3>
+
+                        <p class="text-sm text-white/80 mt-1">
+                            Sunset cocktails & ocean views
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="p-5">
+
+                    <p class="text-sm text-slate-500 leading-relaxed">
+                        Enjoy refreshing drinks, tropical flavors, and relaxing evenings beside the beautiful Bentota coastline.
+                    </p>
+
+
+                    <a href="#"
+                    class="inline-flex items-center mt-5 text-sm font-bold text-amber-500 uppercase tracking-widest hover:text-amber-600 transition">
+
+                        Explore
+                        <span class="ml-2">→</span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Tropical Park Card -->
+            <div class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-500 border border-slate-100">
+
+                <div class="h-56 overflow-hidden relative">
+
+                    <img 
+                    src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=700&q=80"
+                    class="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+                    alt="Tropical Park">
+
+
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+
+
+                    <div class="absolute bottom-5 left-5 text-white">
+
+                        <h3 class="font-display text-2xl font-bold">
+                            Tropical Garden Park
+                        </h3>
+
+                        <p class="text-sm text-white/80 mt-1">
+                            Nature, peace & relaxation
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="p-5">
+
+                    <p class="text-sm text-slate-500 leading-relaxed">
+                        Walk through beautiful gardens surrounded by tropical plants and peaceful spaces for relaxation.
+                    </p>
+
+
+                    <a href="#"
+                    class="inline-flex items-center mt-5 text-sm font-bold text-amber-500 uppercase tracking-widest hover:text-amber-600 transition">
+
+                        Explore
+                        <span class="ml-2">→</span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+
+            <!-- Pool Card -->
+            <div class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-500 border border-slate-100">
+
+                <div class="h-56 overflow-hidden relative">
+
+                    <img 
+                    src="https://images.unsplash.com/photo-1572331165267-854da2b10ccc?auto=format&fit=crop&w=700&q=80"
+                    class="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+                    alt="Infinity Pool">
+
+
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+
+
+                    <div class="absolute bottom-5 left-5 text-white">
+
+                        <h3 class="font-display text-2xl font-bold">
+                            Infinity Pool
+                        </h3>
+
+                        <p class="text-sm text-white/80 mt-1">
+                            Swim with ocean views
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="p-5">
+
+                    <p class="text-sm text-slate-500 leading-relaxed">
+                        Experience our luxury infinity pool designed for refreshing moments with breathtaking coastal views.
+                    </p>
+
+
+                    <a href="#"
+                    class="inline-flex items-center mt-5 text-sm font-bold text-amber-500 uppercase tracking-widest hover:text-amber-600 transition">
+
+                        Explore
+                        <span class="ml-2">→</span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
         </div>
-        <div class="rounded-xl overflow-hidden shadow-lg group bg-slate-50 hover:shadow-2xl transition duration-300">
-          <div class="h-64 bg-cover bg-center group-hover:scale-105 transition duration-700" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80')"></div>
-          <div class="p-6 text-center">
-            <h3 class="font-display font-semibold text-xl text-slate-900">Benthota Resort</h3>
-            <p class="text-sm text-slate-500 mt-2">Luxury stays infused with wellness, comfort, and spa-inspired details.</p>
-            <a href="#" class="inline-block mt-4 text-sm font-semibold text-amber-500 hover:text-amber-400 uppercase tracking-widest border-b border-amber-500 pb-1">Explore Benthota Resort</a>
-          </div>
-        </div>
-      </div>
+
     </div>
-  </section>
+</section>
 
   <!-- Dynamic Rooms Section -->
   <section class="bg-slate-50 py-24 border-t border-slate-200">
@@ -295,7 +437,7 @@
   </section>
 
   @if(session()->has('message'))
-    <div class="fixed top-5 right-5 z-50 rounded-lg bg-emerald-600 px-4 py-3 text-sm font-semibold text-white shadow-lg">
+    <div id="flash-message" class="fixed top-5 right-5 z-50 rounded-lg bg-emerald-600 px-4 py-3 text-sm font-semibold text-white shadow-lg">
       {{ session()->get('message') }}
     </div>
   @endif
@@ -355,6 +497,14 @@
             modal.classList.remove('flex');
           }
         });
+      }
+
+      const flashMessage = document.getElementById('flash-message');
+      if (flashMessage) {
+        setTimeout(() => {
+          flashMessage.classList.add('opacity-0');
+          setTimeout(() => flashMessage.remove(), 300);
+        }, 3200);
       }
     });
   </script>

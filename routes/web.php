@@ -4,9 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HotelController;
 
-Route::get('/', function () {
-    return view('home.index');
-});
+Route::get('/', [AdminController::class, 'home']);
 
 Route::middleware([
     'auth:sanctum',
@@ -17,8 +15,7 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
-route::get('/', [AdminController::class, 'home']);    
-route::get('/home', [AdminController::class, 'index'])->name('home');
+Route::get('/home', [AdminController::class, 'index'])->name('home');
 
 route::get('/create_room', [AdminController::class, 'create_room']);
 
@@ -45,8 +42,22 @@ Route::get('/bookings/checkin/{booking}', [HotelController::class, 'checkIn']);
 Route::get('/bookings/checkout/{booking}', [HotelController::class, 'checkOut']);
 
 Route::post('/reserve', [HotelController::class, 'reserve']);
+Route::get('/reservation/{booking}', [HotelController::class, 'reservationConfirmation']);
+
+Route::get('/invoice', [HotelController::class, 'invoiceLookup']);
+Route::get('/invoice/{booking}', [HotelController::class, 'guestInvoice']);
+Route::post('/invoice/{booking}/payment', [HotelController::class, 'guestStorePayment']);
+
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+    Route::get('/account/bookings', [HotelController::class, 'myBookings'])->name('account.bookings');
+    Route::get('/account/payments', [HotelController::class, 'myPayments'])->name('account.payments');
+    Route::post('/account/bookings/{booking}/payment', [HotelController::class, 'accountPayment'])->name('account.bookings.payment');
+});
 
 Route::get('/payments', [HotelController::class, 'payments']);
+Route::get('/payments/{payment}/edit', [HotelController::class, 'editPayment']);
+Route::put('/payments/{payment}', [HotelController::class, 'updatePayment']);
+Route::get('/payments/{payment}/invoice', [HotelController::class, 'invoicePayment']);
 Route::post('/payments', [HotelController::class, 'storePayment']);
-Route::get('/payments/delete/{payment}', [HotelController::class, 'deletePayment']);
+Route::delete('/payments/{payment}', [HotelController::class, 'deletePayment']);
 

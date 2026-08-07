@@ -112,7 +112,7 @@ class HotelController extends Controller
 
         $room->update(['is_available' => false]);
 
-        return redirect('/')->with('message', 'Your reservation request has been received. We will contact you shortly.');
+        return redirect('/reservation/' . $booking->id);
     }
 
     public function storeBooking(Request $request)
@@ -163,23 +163,40 @@ class HotelController extends Controller
 
     public function checkIn(Booking $booking)
     {
+        if (!$booking->customer || !$booking->room) {
+            return redirect('/bookings')->with('error', 'Cannot check in: missing customer or assigned room.');
+        }
+
         $booking->update([
             'status' => 'checked_in',
             'checked_in_at' => now(),
         ]);
 
-        return redirect('/bookings')->with('message', 'Guest checked in successfully.');
+        $booking->room()->update(['is_available' => false]);
+
+        return redirect('/bookings')->with('message', 'Customer checked in successfully. Arrival time recorded.');
     }
 
     public function checkOut(Booking $booking)
     {
+        if (!$booking->room) {
+            return redirect('/bookings')->with('error', 'Cannot check out: assigned room is missing.');
+        }
+
+        $checkIn = Carbon::parse($booking->check_in_date);
+        $checkOut = Carbon::parse($booking->check_out_date);
+        $nights = max(1, $checkIn->diffInDays($checkOut));
+        $finalBill = $nights * (float) $booking->room->price_per_night;
+
         $booking->update([
             'status' => 'checked_out',
             'checked_out_at' => now(),
+            'total_price' => $finalBill,
         ]);
+
         $booking->room()->update(['is_available' => true]);
 
-        return redirect('/bookings')->with('message', 'Guest checked out successfully.');
+        return redirect('/bookings')->with('message', 'Guest checked out successfully. Final bill: $' . number_format($finalBill, 2));
     }
 
     public function payments()
@@ -190,13 +207,112 @@ class HotelController extends Controller
         return view('admin.payments', compact('payments', 'bookings'));
     }
 
-    public function storePayment(Request $request)
+    public function editPayment(Payment $payment)
+    {
+        $bookings = Booking::whereIn('status', ['confirmed', 'checked_in', 'checked_out'])->get();
+
+        return view('admin.payments-edit', compact('payment', 'bookings'));
+    }
+
+    public function updatePayment(Request $request, Payment $payment)
     {
         $data = $request->validate([
             'booking_id' => 'required|exists:bookings,id',
             'amount' => 'required|numeric|min:0',
             'payment_method' => 'required|string',
-            'status' => 'required|string',
+            'status' => 'required|string|in:Paid,Pending,Refund',
+            'notes' => 'nullable|string',
+        ]);
+
+        $payment->update($data);
+
+        return redirect('/payments')->with('message', 'Payment updated successfully.');
+    }
+
+    public function invoicePayment(Payment $payment)
+    {
+        return view('admin.payment-invoice', compact('payment'));
+    }
+
+    public function reservationConfirmation(Booking $booking)
+    {
+        $booking->load(['customer', 'room', 'payments']);
+
+        return view('guest.confirmation', compact('booking'));
+    }
+
+    public function myBookings()
+    {
+        $user = auth()->user();
+        $bookings = Booking::with(['customer', 'room', 'payments'])
+            ->where('user_id', $user->id)
+            ->orWhereHas('customer', function ($query) use ($user) {
+                $query->where('email', $user->email);
+            })
+            ->latest()
+            ->get();
+
+        return view('account.bookings', compact('bookings'));
+    }
+
+    public function myPayments()
+    {
+        $user = auth()->user();
+        $payments = Payment::with(['booking.customer', 'booking.room'])
+            ->whereHas('booking', function ($query) use ($user) {
+                $query->where('user_id', $user->id)
+                    ->orWhereHas('customer', function ($query) use ($user) {
+                        $query->where('email', $user->email);
+                    });
+            })
+            ->latest()
+            ->get();
+
+        $bookings = Booking::with(['customer', 'room'])
+            ->where('user_id', $user->id)
+            ->orWhereHas('customer', function ($query) use ($user) {
+                $query->where('email', $user->email);
+            })
+            ->whereIn('status', ['pending', 'checked_out'])
+            ->get();
+
+        return view('account.payments', compact('payments', 'bookings'));
+    }
+
+    public function accountPayment(Request $request, Booking $booking)
+    {
+        $user = auth()->user();
+
+        if ($booking->user_id !== $user->id && optional($booking->customer)->email !== $user->email) {
+            abort(403);
+        }
+
+        $data = $request->validate([
+            'amount' => 'required|numeric|min:0',
+            'payment_method' => 'required|string|in:Cash,Card,Online Payment',
+            'notes' => 'nullable|string',
+        ]);
+
+        $data['booking_id'] = $booking->id;
+        $data['status'] = 'Paid';
+        $data['payment_date'] = now();
+
+        Payment::create($data);
+
+        if ($booking->status === 'checked_out') {
+            $booking->update(['status' => 'completed']);
+        }
+
+        return redirect()->route('account.payments')->with('message', 'Payment submitted successfully.');
+    }
+
+    public function storePayment(Request $request)
+    {
+        $data = $request->validate([
+            'booking_id' => 'required|exists:bookings,id',
+            'amount' => 'required|numeric|min:0',
+            'payment_method' => 'required|string|in:Cash,Card,Bank Transfer,Online Payment',
+            'status' => 'required|string|in:Paid,Pending,Refund',
             'notes' => 'nullable|string',
         ]);
 
@@ -204,6 +320,11 @@ class HotelController extends Controller
         Payment::create($data);
 
         return redirect('/payments')->with('message', 'Payment recorded successfully.');
+    }
+
+    public function invoiceLookup(Request $request)
+    {
+        return view('guest.invoice-lookup');
     }
 
     public function deletePayment(Payment $payment)

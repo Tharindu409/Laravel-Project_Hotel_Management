@@ -22,30 +22,46 @@
         <div class="mb-4 rounded bg-emerald-50 p-3 text-emerald-700">{{ session()->get('message') }}</div>
       @endif
       <div class="bg-white rounded-xl shadow p-6 mb-6">
-        <h2 class="text-xl font-semibold mb-4">Record Payment</h2>
-        <form action="{{ url('/payments') }}" method="POST" class="grid gap-4 md:grid-cols-2">
-          @csrf
-          <select name="booking_id" required class="border rounded px-3 py-2">
-            <option value="">Select booking</option>
-            @foreach($bookings as $booking)
-              <option value="{{ $booking->id }}">{{ $booking->customer->name ?? 'Guest' }} - {{ $booking->room->title ?? 'Room' }}</option>
-            @endforeach
-          </select>
-          <input type="number" step="0.01" name="amount" required placeholder="Amount" class="border rounded px-3 py-2">
-          <select name="payment_method" class="border rounded px-3 py-2">
-            <option>Cash</option>
-            <option>Card</option>
-            <option>Bank Transfer</option>
-            <option>Online Payment</option>
-          </select>
-          <select name="status" class="border rounded px-3 py-2">
-            <option>Paid</option>
-            <option>Pending</option>
-            <option>Refund</option>
-          </select>
-          <textarea name="notes" rows="2" placeholder="Notes" class="md:col-span-2 border rounded px-3 py-2"></textarea>
-          <button class="md:col-span-2 bg-amber-500 text-white px-4 py-2 rounded">Save Payment</button>
-        </form>
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-semibold">Record Payment</h2>
+          <button type="button" onclick="toggleModal('paymentModal')" class="rounded-full bg-slate-900 px-4 py-2 text-white hover:bg-slate-800">Open Payment Form</button>
+        </div>
+        <p class="text-slate-500">Use the button to open the payment entry popup.</p>
+      </div>
+
+      <div id="paymentModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40 p-4">
+        <div class="w-full max-w-3xl rounded-3xl bg-white p-6 shadow-xl">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl font-semibold">Record Payment</h2>
+            <button type="button" onclick="toggleModal('paymentModal')" class="text-slate-500 hover:text-slate-900 text-2xl leading-none">&times;</button>
+          </div>
+          <form action="{{ url('/payments') }}" method="POST" class="grid gap-4 md:grid-cols-2">
+            @csrf
+            <select name="booking_id" required class="border rounded px-3 py-2">
+              <option value="">Select booking</option>
+              @foreach($bookings as $booking)
+                <option value="{{ $booking->id }}">{{ $booking->customer->name ?? 'Guest' }} - {{ $booking->room->title ?? 'Room' }}</option>
+              @endforeach
+            </select>
+            <input type="number" step="0.01" name="amount" required placeholder="Amount" class="border rounded px-3 py-2">
+            <select name="payment_method" class="border rounded px-3 py-2">
+              <option value="Cash">Cash</option>
+              <option value="Card">Card</option>
+              <option value="Bank Transfer">Bank Transfer</option>
+              <option value="Online Payment">Online Payment</option>
+            </select>
+            <select name="status" class="border rounded px-3 py-2">
+              <option value="Paid">Paid</option>
+              <option value="Pending">Pending</option>
+              <option value="Refund">Refund</option>
+            </select>
+            <textarea name="notes" rows="2" placeholder="Notes" class="md:col-span-2 border rounded px-3 py-2"></textarea>
+            <div class="md:col-span-2 flex justify-end gap-3">
+              <button type="button" onclick="toggleModal('paymentModal')" class="rounded-lg border border-slate-300 px-4 py-2">Cancel</button>
+              <button type="submit" class="rounded-lg bg-black text-white px-4 py-2">Save Payment</button>
+            </div>
+          </form>
+        </div>
       </div>
       <div class="bg-white rounded-xl shadow p-6 overflow-x-auto">
         <h2 class="text-xl font-semibold mb-4">Payment History</h2>
@@ -57,6 +73,7 @@
               <th class="py-2">Method</th>
               <th class="py-2">Status</th>
               <th class="py-2">Date</th>
+              <th class="py-2">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -67,6 +84,15 @@
                 <td class="py-2">{{ $payment->payment_method }}</td>
                 <td class="py-2">{{ $payment->status }}</td>
                 <td class="py-2">{{ $payment->payment_date?->format('Y-m-d H:i') }}</td>
+                <td class="py-2 space-x-2">
+                  <a href="{{ url('/payments/' . $payment->id . '/edit') }}" class="text-indigo-600">Edit</a>
+                  <a href="{{ url('/payments/' . $payment->id . '/invoice') }}" class="text-emerald-600">Invoice</a>
+                  <form action="{{ url('/payments/' . $payment->id) }}" method="POST" class="inline">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="text-red-600">Delete</button>
+                  </form>
+                </td>
               </tr>
             @endforeach
           </tbody>
@@ -75,5 +101,13 @@
     </main>
   </div>
 </div>
+  <script>
+    function toggleModal(id) {
+      const modal = document.getElementById(id);
+      if (!modal) return;
+      modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
+    }
+  </script>
 </body>
 </html>

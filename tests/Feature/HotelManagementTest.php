@@ -86,7 +86,8 @@ class HotelManagementTest extends TestCase
             'notes' => 'Late arrival',
         ]);
 
-        $response->assertRedirect('/');
+        $booking = Booking::latest()->first();
+        $response->assertRedirect('/reservation/' . $booking->id);
         $this->assertDatabaseHas('bookings', [
             'room_id' => $room->id,
             'status' => 'pending',

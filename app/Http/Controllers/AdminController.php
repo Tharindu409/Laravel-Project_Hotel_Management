@@ -28,9 +28,30 @@ class AdminController extends Controller
         return redirect()->route('login');
     }
 
-    public function home()
+    public function home(Request $request)
     {
-        $rooms = Room::all();
+        $query = Room::query();
+
+        if ($request->filled('check_in_date') || $request->filled('check_out_date') || $request->filled('guest_selection')) {
+            $query->where('is_available', true);
+
+            if ($request->filled('guest_selection')) {
+                $parts = explode(',', $request->input('guest_selection'));
+                $adults = isset($parts[1]) ? (int) $parts[1] : null;
+                $children = isset($parts[2]) ? (int) $parts[2] : null;
+
+                if ($adults) {
+                    $query->where('capacity_adults', '>=', $adults);
+                }
+
+                if ($children) {
+                    $query->where('capacity_children', '>=', $children);
+                }
+            }
+        }
+
+        $rooms = $query->get();
+
         return view('home.index', compact('rooms'));
     }
 

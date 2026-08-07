@@ -23,16 +23,11 @@
       @endif
       <div class="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
         <div class="bg-white rounded-xl shadow p-6">
-          <h2 class="text-xl font-semibold mb-4">Add Customer</h2>
-          <form action="{{ url('/customers') }}" method="POST" class="space-y-3">
-            @csrf
-            <input name="name" required placeholder="Customer name" class="w-full border rounded px-3 py-2">
-            <input name="email" required type="email" placeholder="Email" class="w-full border rounded px-3 py-2">
-            <input name="phone" placeholder="Phone" class="w-full border rounded px-3 py-2">
-            <input name="address" placeholder="Address" class="w-full border rounded px-3 py-2">
-            <textarea name="notes" rows="3" placeholder="Notes" class="w-full border rounded px-3 py-2"></textarea>
-            <button class="bg-amber-500 text-white px-4 py-2 rounded">Save Customer</button>
-          </form>
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl font-semibold">Add Customer</h2>
+            <button type="button" onclick="toggleModal('customerModal')" class="rounded-full bg-slate-900 px-4 py-2 text-white hover:bg-slate-800">Open Customer Form</button>
+          </div>
+          <p class="text-slate-500">Open the popup to add a new customer.</p>
         </div>
         <div class="bg-white rounded-xl shadow p-6 overflow-x-auto">
           <h2 class="text-xl font-semibold mb-4">Customer List</h2>
@@ -60,8 +55,37 @@
           </table>
         </div>
       </div>
+
+      <div id="customerModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40 p-4">
+        <div class="w-full max-w-2xl rounded-3xl bg-white p-6 shadow-xl">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl font-semibold">Add Customer</h2>
+            <button type="button" onclick="toggleModal('customerModal')" class="text-slate-500 hover:text-slate-900 text-2xl leading-none">&times;</button>
+          </div>
+          <form action="{{ url('/customers') }}" method="POST" class="space-y-3">
+            @csrf
+            <input name="name" required placeholder="Customer name" class="w-full border rounded px-3 py-2">
+            <input name="email" required type="email" placeholder="Email" class="w-full border rounded px-3 py-2">
+            <input name="phone" placeholder="Phone" class="w-full border rounded px-3 py-2">
+            <input name="address" placeholder="Address" class="w-full border rounded px-3 py-2">
+            <textarea name="notes" rows="3" placeholder="Notes" class="w-full border rounded px-3 py-2"></textarea>
+            <div class="flex justify-end gap-3">
+              <button type="button" onclick="toggleModal('customerModal')" class="rounded-lg border border-slate-300 px-4 py-2">Cancel</button>
+              <button type="submit" class="rounded-lg bg-black text-white px-4 py-2">Save Customer</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </main>
   </div>
 </div>
+  <script>
+    function toggleModal(id) {
+      const modal = document.getElementById(id);
+      if (!modal) return;
+      modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
+    }
+  </script>
 </body>
 </html>
